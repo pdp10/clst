@@ -2,16 +2,16 @@
 # clst
 
 ### Introduction
-This folder includes a set of utilities for managing a cluster with OpenLava LSF platform (http://www.openlava.org/). 
+This project includes a set of utilities for managing a cluster with OpenLava LSF platform (http://www.openlava.org/). 
 
 ### Installation and first use
 In order to use these utilities, the following environmental variables must be added: 
-CLST_DIR pointing to this folder
-CLST_LIB pointing to lib 
+CLST_DIR pointing to clst/
+CLST_LIB pointing to clst/lib 
 
 The environmental variable ${CLST_DIR}/bin could be added to your $PATH. 
 
-Before installing openlava the administrator should edit the openlava configuration files in etc/lsf_config . 
+Before installing openlava the administrator should edit the openlava configuration files in ${CLST_DIR}/etc/lsf_config . 
 
 In ${CLST_DIR}/bin the scripts
 - clst_install_openlava.sh   # install openlava and copy the configuration files to the nodes
