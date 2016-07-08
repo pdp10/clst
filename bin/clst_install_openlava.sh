@@ -53,28 +53,29 @@ hosts=(`get_comp db[@] "hosts"`)
 ips=(`get_comp db[@] "ips"`)
 mac=(`get_comp db[@] "mac"`)
 
+## BUG THE COMMENTED COMMENTS DO NOT WORK ANYMORE..
 # Exclude the following nodes
-clean_db=`exclude_hosts "${CLST_DIR}/etc/db/clst_excl_nodes" hosts[@] ips[@] mac[@]`
-hosts=(`get_comp clean_db[@] "hosts"`)
-ips=(`get_comp clean_db[@] "ips"`)
-mac=(`get_comp clean_db[@] "mac"`)
-
-# Attach the admin name to the host.
-hosts=(`bind_user_host $admin hosts[@]`)
+# clean_db=`exclude_hosts "${CLST_DIR}/etc/db/clst_excl_nodes" hosts[@] ips[@] mac[@]`
+# hosts=(`get_comp clean_db[@] "hosts"`)
+# ips=(`get_comp clean_db[@] "ips"`)
+# mac=(`get_comp clean_db[@] "mac"`)
 
 
+# Attach the admin name to each host.
+#hosts=(`bind_user_host $admin hosts[@]`)
+# echo $admin
+# echo $hosts
 
-#hosts=('npdp2@iah522.ncl.ac.uk')
-
+hosts[0]="$admin@bi1766"
+echo $hosts
 
 
 openlava="openlava-2.2"
+openlava_version="2.2"
 repository_folder="/opt"
 install_path="/usr/local"
 
 
-#echo "Install openlava dependencies (e.g. tcl, tcl-dev):"
-#~/bin/clst_install_packages.sh
 
 echo ""
 echo "#############################################"
@@ -89,20 +90,9 @@ echo -n "Enter cluster password: "; read -r -s PASS; echo;
 echo ""
 echo "COMPILATION OF OPENLAVA ON THE MASTER NODE"
 
-# only the iah372, iah372backup, iah522, iah502    (they have their own home folders)
-# select only the first three elements.
-#for masterhost in ${hosts[@]:0:4}
-#do
 
-#for (( i=0; i < 4; i++ ))
-# do
-
-
-# Edited by Piero before leaving. Apparently iah372 and its backup machine does not 
-# like compiling openlava after upgrading the system.. spoilt children!
-# Therefore: compile openlave on iah-huygens (in clst_db_nodes this is the third, so number i=2)
-# 
-for (( i=2; i < 3; i++ ))
+# Compile openlava on the nodes you require. 
+for (( i=0; i < ${#hosts[@]}; i++ ))
 do
 
   echo ""
@@ -119,14 +109,14 @@ do
     
     ssh ${hosts[i]} "rm -rf openlava*"
     # echo "Dowloading openlava..."
-    ssh ${hosts[i]} "wget http://www.openlava.org/tarball/${openlava}.tar.gz"
+    ssh ${hosts[i]} "wget --output-document=${openlava}.tar.gz https://github.com/openlava/openlava/archive/${openlava_version}.tar.gz"
     #echo "Copying openlava from ${repository_folder}/${openlava}.tar.gz to ~/"
     #ssh ${hosts[i]} "cp ${repository_folder}/${openlava}.tar.gz ~/ "
      
    
      
      echo "Compile  openlava on ${hosts[i]}"     
-     ssh ${hosts[i]} "tar xvzf ${openlava}.tar.gz ; cd ${openlava} ; find * -print0 | xargs -0 touch -d 20140118 ; ./configure --prefix=${install_path}/${openlava} ; make clean ; make uninstall ; find * -print0 | xargs -0 touch -d 20140118 ; make ; cd ~/" 
+     ssh ${hosts[i]} "tar xvzf ${openlava}.tar.gz ; cd ${openlava} ; find * -print0 | xargs -0 touch -d 20160118 ; ./bootstrap.sh ; ./configure --prefix=${install_path}/${openlava} ; make clean ; make uninstall ; find * -print0 | xargs -0 touch -d 20160118 ; make ; cd ~/" 
 ##     ssh ${hosts[i]} "tar xvzf ${openlava}.tar.gz ; cd ${openlava} ; ./configure ; make ; cd ~/"     
     
     echo ""
@@ -148,7 +138,7 @@ done
 
 
 # iterates on each element ${hosts[@]} except for the servers iah372 and iah372backup
-for (( i=2; i < ${#hosts[@]}; i++ ))
+for (( i=0; i < ${#hosts[@]}; i++ ))
 do
 
     echo ""

@@ -29,7 +29,7 @@
 
 
 
-# It returns a specified component (hostnames,ips,macs) of a database string.
+# Return a specified component (hostnames,ips,macs) of a database string.
 # Input: database string in the format: hostnames,ips,macs 
 #        component name
 function get_comp()
@@ -41,6 +41,7 @@ function get_comp()
   # NOTE: IFS wants a single char. It does not work with '/?/'
   IFS=$','
   array=(${database[@]})
+  echo $array
   IFS="$OIFS"
   case "${list}" in
     ("hosts") 	echo "${array[0]}" ;; 
@@ -52,7 +53,7 @@ function get_comp()
  
 
 
-# It retrieves the administrator name.
+# Retrieve the administrator name.
 # Input: A file containing the administrator name
 function get_admin()
 {
@@ -67,7 +68,7 @@ function get_admin()
 
 
 
-# It retrieves the full list of hosts in a database string in the format hostnames, ips, macs
+# Retrieve the full list of hosts in a database string in the format hostnames, ips, macs
 # Input: A file in the format hostname, ip, mac EOL
 function get_list_hosts()
 {
@@ -93,7 +94,7 @@ function get_list_hosts()
 
 
 
-# It retrieves a list of hosts in a database string in the format hostnames, ips, macs
+# Retrieve a list of hosts in a database string in the format hostnames, ips, macs
 # without excluded hosts.
 # Input: A file in the format hostname, ip, mac EOL
 #        An array of hostnames
@@ -134,7 +135,7 @@ function exclude_hosts()
 
 
 
-# It attaches the admin name to the hosts and returns 
+# Attach the admin name to the hosts and returns 
 # an array in the format user@host(s). 
 # Input: A user name
 #        An array of hostnames
@@ -151,7 +152,7 @@ function bind_user_host()
 
 
 
-# It exports the following functions (is this really required?? TO CHECK)
+# Export the following functions (is this really required?? TO CHECK)
 export -f get_comp
 export -f get_admin
 export -f get_list_hosts

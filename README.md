@@ -21,3 +21,6 @@ In ${CLST_DIR}/bin the scripts
 
 provide an easy installation and management of openlava. These script work and are tested with openlava-2.2.
 
+
+It is strongly advised to set ssh with automatic password for running these scripts. 
+
