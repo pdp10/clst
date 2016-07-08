@@ -49,22 +49,25 @@ hosts=(`get_comp db[@] "hosts"`)
 ips=(`get_comp db[@] "ips"`)
 mac=(`get_comp db[@] "mac"`)
 
+## BUG THE COMMENTED COMMENTS DO NOT WORK ANYMORE..
 # Exclude the following nodes
-clean_db=`exclude_hosts "${CLST_DIR}/etc/db/clst_excl_nodes" hosts[@] ips[@] mac[@]`
-hosts=(`get_comp clean_db[@] "hosts"`)
-ips=(`get_comp clean_db[@] "ips"`)
-mac=(`get_comp clean_db[@] "mac"`)
+# clean_db=`exclude_hosts "${CLST_DIR}/etc/db/clst_excl_nodes" hosts[@] ips[@] mac[@]`
+# hosts=(`get_comp clean_db[@] "hosts"`)
+# ips=(`get_comp clean_db[@] "ips"`)
+# mac=(`get_comp clean_db[@] "mac"`)
 
-# Attach the admin name to the host.
+
+# Attach the admin name to each host.
 hosts=(`bind_user_host $admin hosts[@]`)
+# echo $admin
+# echo $hosts
 
-
-
-#hosts=('npdp2@iah522.ncl.ac.uk')
-
+hosts[0]="$admin@bi1766"
+echo $hosts
 
 
 openlava="openlava-2.2"
+openlava_version="2.2"
 install_path="/usr/local"
 
 
