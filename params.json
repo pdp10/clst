@@ -1,0 +1,6 @@
+{
+  "name": "Clst",
+  "tagline": "A collection of utilities for managing OpenLava LSF job scheduling manager",
+  "body": "\r\n# clst\r\n\r\n### Introduction\r\nThis folder includes a set of utilities for managing a cluster with OpenLava LSF platform (http://www.openlava.org/). \r\n\r\n### Installation and first use\r\nIn order to use these utilities, the following environmental variables must be added: \r\nCLST_DIR pointing to this folder\r\nCLST_LIB pointing to lib \r\n\r\nThe environmental variable ${CLST_DIR}/bin could be added to your $PATH. \r\n\r\nBefore installing openlava the administrator should edit the openlava configuration files in etc/lsf_config . \r\n\r\nIn ${CLST_DIR}/bin the scripts\r\n- clst_install_openlava.sh   # install openlava and copy the configuration files to the nodes\r\n- clst_start_openlava.sh     # start the service\r\n- clst_stop_openlava.sh      # stop the service\r\n- clst_test_openlava.sh      # a quick test\r\n\r\nprovide an easy installation and management of openlava. These script work and are tested with openlava-2.2.\r\n\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
