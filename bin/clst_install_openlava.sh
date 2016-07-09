@@ -66,14 +66,13 @@ mac=(`get_comp db[@] "mac"`)
 # echo $admin
 # echo $hosts
 
-hosts[0]="$admin@bi1766"
+hosts[0]="$admin@ariel"
 echo $hosts
 
 
-openlava="openlava-2.2"
-openlava_version="2.2"
-repository_folder="/opt"
-install_path="/usr/local"
+openlava="openlava-3.3"
+openlava_version="3.3"
+install_path="/opt"
 
 
 
@@ -110,13 +109,10 @@ do
     ssh ${hosts[i]} "rm -rf openlava*"
     # echo "Dowloading openlava..."
     ssh ${hosts[i]} "wget --output-document=${openlava}.tar.gz https://github.com/openlava/openlava/archive/${openlava_version}.tar.gz"
-    #echo "Copying openlava from ${repository_folder}/${openlava}.tar.gz to ~/"
-    #ssh ${hosts[i]} "cp ${repository_folder}/${openlava}.tar.gz ~/ "
      
-   
      
      echo "Compile  openlava on ${hosts[i]}"     
-     ssh ${hosts[i]} "tar xvzf ${openlava}.tar.gz ; cd ${openlava} ; find * -print0 | xargs -0 touch -d 20160118 ; ./bootstrap.sh ; ./configure --prefix=${install_path}/${openlava} ; make clean ; make uninstall ; find * -print0 | xargs -0 touch -d 20160118 ; make ; cd ~/" 
+     ssh ${hosts[i]} "tar xvzf ${openlava}.tar.gz ; cd ${openlava} ; find * -print0 | xargs -0 touch -d 20160118 ; ./bootstrap.sh ; ./configure ; make clean ; make uninstall ; find * -print0 | xargs -0 touch -d 20160118 ; make ; cd ~/" 
 ##     ssh ${hosts[i]} "tar xvzf ${openlava}.tar.gz ; cd ${openlava} ; ./configure ; make ; cd ~/"     
     
     echo ""

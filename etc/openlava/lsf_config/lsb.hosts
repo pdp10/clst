@@ -31,7 +31,7 @@ HOST_NAME     MXJ JL/U   r1m    pg    ls     tmp  DISPATCH_WINDOW  # Keywords
 # default was uncommented
 #default       !   ()     ()    ()    ()     ()     ()		   # Example
 # the first is the master node
-bi1766		2   ()     ()    ()    ()     ()    ()
+ariel		2   ()     ()    ()    ()     ()    ()
 End Host
 
 # Host groups can be referenced by the queue file.  Each line defines a host
