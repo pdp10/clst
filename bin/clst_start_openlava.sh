@@ -62,13 +62,13 @@ hosts=(`bind_user_host $admin hosts[@]`)
 # echo $admin
 # echo $hosts
 
-hosts[0]="$admin@bi1766"
+hosts[0]="$admin@ariel"
 echo $hosts
 
 
-openlava="openlava-2.2"
-openlava_version="2.2"
-install_path="/usr/local"
+openlava_version="3.3"
+openlava="openlava-"${openlava_version}
+install_path="/opt"
 
 
 
