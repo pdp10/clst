@@ -1,6 +1,9 @@
 
 # clst
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 ### Introduction
 This project includes a set of utilities for managing a cluster with OpenLava LSF platform (http://www.openlava.org/). 
 
